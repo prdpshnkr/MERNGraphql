@@ -58,11 +58,9 @@ userSchema.methods.comparePassword = function(candidatePassword){
     });
 }
 
-
-
 userSchema.methods.generateToken = async function(){
     var user = this;
-    var token = jwt.sign({email:user.email},process.env.SECRET,{
+    var token = jwt.sign({_id: user._id, email:user.email},process.env.SECRET,{
         expiresIn:'7d'
     });
 
